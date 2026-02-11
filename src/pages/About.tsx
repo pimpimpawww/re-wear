@@ -1,15 +1,6 @@
 import { motion } from "framer-motion";
 import PageTransition from "@/components/PageTransition";
-import aboutPortrait from "@/assets/about-portrait.jpg";
-
-const skills = [
-  "UI/UX Design",
-  "Brand Identity",
-  "Typography",
-  "Web Design",
-  "Art Direction",
-  "Illustration",
-];
+import { User } from "lucide-react";
 
 const About = () => {
   return (
@@ -22,7 +13,7 @@ const About = () => {
             transition={{ delay: 0.2 }}
             className="text-sm tracking-[0.2em] uppercase text-muted-foreground font-body mb-4"
           >
-            About
+            Get to Know Me
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -30,69 +21,64 @@ const About = () => {
             transition={{ delay: 0.3 }}
             className="text-4xl md:text-5xl font-heading font-medium text-foreground mb-16"
           >
-            Tentang Saya
+            About Me
           </motion.h1>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            {/* Profile Image Placeholder */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
+              className="w-full max-w-md mx-auto lg:mx-0"
             >
-              <img
-                src={aboutPortrait}
-                alt="Portrait"
-                className="w-full max-w-md h-[500px] object-cover rounded-sm"
-              />
+              <div className="aspect-[3/4] bg-card rounded-2xl shadow-lg flex items-center justify-center border border-border">
+                <div className="text-center space-y-4">
+                  <div className="w-24 h-24 rounded-full bg-secondary flex items-center justify-center mx-auto">
+                    <User className="w-12 h-12 text-primary" />
+                  </div>
+                  <p className="text-sm text-muted-foreground font-body">Profile Photo</p>
+                </div>
+              </div>
             </motion.div>
 
+            {/* Content */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="space-y-8"
+              className="space-y-6"
             >
-              <div className="space-y-4">
-                <p className="text-foreground font-body leading-relaxed">
-                  Halo! Saya adalah seorang creative designer dengan pengalaman lebih dari 5 tahun dalam menciptakan desain yang bersih dan bermakna. Saya percaya bahwa desain yang baik adalah desain yang tidak hanya indah, tetapi juga fungsional.
-                </p>
-                <p className="text-muted-foreground font-body leading-relaxed">
-                  Pendekatan saya berfokus pada kesederhanaan dan kejelasan. Setiap proyek dimulai dengan pemahaman mendalam tentang kebutuhan dan tujuan, kemudian diterjemahkan ke dalam visual yang elegan dan efektif.
-                </p>
-                <p className="text-muted-foreground font-body leading-relaxed">
-                  Saat ini saya berbasis di Jakarta dan terbuka untuk kolaborasi kreatif dengan klien dari berbagai industri.
-                </p>
-              </div>
+              <p className="text-foreground font-body leading-relaxed text-base">
+                Najwa Aulia is a multimedia student with a strong passion for UI/UX design and digital creativity. With one year of experience working as a teacher in a private elementary school, she developed strong communication skills, empathy, and responsibility.
+              </p>
+              <p className="text-muted-foreground font-body leading-relaxed text-base">
+                She focuses on creating clean, user-centered digital experiences that balance aesthetics and functionality. Her design approach emphasizes simplicity, clarity, and thoughtful visual hierarchy.
+              </p>
+              <p className="text-muted-foreground font-body leading-relaxed text-base">
+                Najwa enjoys designing landing pages, building interactive websites, and exploring motion graphics. She believes that great design is not only visually appealing but also solves real user problems.
+              </p>
+              <p className="text-muted-foreground font-body leading-relaxed text-base">
+                She is detail-oriented, creative, and continuously learning to grow in the digital industry.
+              </p>
 
-              <div>
+              <div className="pt-4">
                 <h3 className="text-sm tracking-[0.15em] uppercase text-muted-foreground font-body mb-4">
-                  Keahlian
+                  Core Skills
                 </h3>
                 <div className="flex flex-wrap gap-3">
-                  {skills.map((skill, i) => (
+                  {["UI/UX Design", "Web Design", "Motion Graphics", "Brand Identity", "Figma", "Adobe Suite"].map((skill, i) => (
                     <motion.span
                       key={skill}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.6 + i * 0.05 }}
-                      className="px-4 py-2 bg-secondary text-secondary-foreground text-sm font-body rounded-sm"
+                      className="px-4 py-2 bg-card text-foreground text-sm font-body rounded-full border border-border shadow-sm"
                     >
                       {skill}
                     </motion.span>
                   ))}
                 </div>
-              </div>
-
-              <div>
-                <h3 className="text-sm tracking-[0.15em] uppercase text-muted-foreground font-body mb-4">
-                  Kontak
-                </h3>
-                <a
-                  href="mailto:hello@portfolio.com"
-                  className="text-foreground font-body hover:text-accent transition-colors duration-300 underline underline-offset-4"
-                >
-                  hello@portfolio.com
-                </a>
               </div>
             </motion.div>
           </div>
