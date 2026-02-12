@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import PageTransition from "@/components/PageTransition";
-import { User } from "lucide-react";
 
 const About = () => {
   return (
@@ -25,20 +24,28 @@ const About = () => {
           </motion.h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Profile Image Placeholder */}
+            {/* Profile Image */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               className="w-full max-w-md mx-auto lg:mx-0"
             >
-              <div className="aspect-[3/4] bg-card rounded-2xl shadow-lg flex items-center justify-center border border-border">
-                <div className="text-center space-y-4">
-                  <div className="w-24 h-24 rounded-full bg-secondary flex items-center justify-center mx-auto">
-                    <User className="w-12 h-12 text-primary" />
-                  </div>
-                  <p className="text-sm text-muted-foreground font-body">Profile Photo</p>
-                </div>
+              <div 
+                className="w-full rounded-2xl shadow-lg border border-border overflow-hidden"
+                style={{ aspectRatio: '3/4' }}
+              >
+                <img 
+                  src="/najwa-portrait.jpg" 
+                  alt="Najwa Aulia - Multimedia & UI/UX Designer" 
+                  style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    display: 'block'
+                  }}
+                />
               </div>
             </motion.div>
 

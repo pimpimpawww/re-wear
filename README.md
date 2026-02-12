@@ -1,73 +1,164 @@
-# Welcome to your Lovable project
+# RE WEAR RI - Fashion Marketplace
 
-## Project info
+E-commerce platform untuk fashion items dengan design minimalis dan modern.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Tech Stack
 
-## How can I edit this code?
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- Lucide Icons
 
-There are several ways of editing your application.
+## Getting Started
 
-**Use Lovable**
+1. Install dependencies:
+```bash
+npm install
+```
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+2. Run development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+3. Open [http://localhost:3000](http://localhost:3000)
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Features Lengkap
 
-**Use GitHub Codespaces**
+### 🏠 Home Page
+- Product grid dengan "Just seen" dan "Hot items"
+- Search bar
+- Quick access ke shopping cart
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### 🔥 Trending Page
+- Produk trending dengan jumlah likes
+- Filter dan search functionality
+- Real-time trending updates
 
-## What technologies are used for this project?
+### 📂 Category System
+- Main categories: Woman, Man, Child, Others
+- Subcategories untuk setiap kategori:
+  - Woman: Footwear, Dresses, Tops, Bottoms, Outerwear, Bags & Purses, Accessories
+  - Man: Footwear, Shirts, Pants, Outerwear, Accessories
+  - Child: Boys, Girls, Babies, Shoes
+  - Others: Home & Living, Electronics, Books
 
-This project is built with:
+### 🛍️ Product Detail
+- Multiple product images (4 photos)
+- Detailed product information
+- Seller profile dengan rating
+- Chat dengan seller
+- Add to favorites
+- Share product
+- Buy now button
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 💰 Checkout Flow
+1. **Checkout Page**
+   - Shipping address management
+   - Product summary
+   - Shipping method selection (Regular/Express)
+   - Payment method selection (Bank Transfer/E-Wallet/COD)
+   - Price breakdown
 
-## How can I deploy this project?
+2. **Payment Page**
+   - Payment countdown timer
+   - Bank transfer details
+   - Copy to clipboard functionality
+   - Upload payment proof
+   - Order ID tracking
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### 🛒 Shopping Features
+- Add to cart
+- Favorites/Wishlist
+- Product search
+- Category filtering
 
-## Can I connect a custom domain to my Lovable project?
+### 💬 Inbox/Messages
+- Chat dengan sellers
+- Unread message indicators
+- Message history
+- Quick replies
 
-Yes, you can!
+### 👤 Profile Page
+- User statistics (Listings, Followers, Following)
+- My listings dengan status (Active/Sold)
+- Quick access ke:
+  - Purchases
+  - Sales
+  - Favorites
+  - Reviews
+- Account settings
+- Payment methods
+- Shipping addresses
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### 📤 Sell Item
+- Upload multiple photos (max 4)
+- Product details form:
+  - Title
+  - Brand
+  - Condition
+  - Description
+  - Category & Subcategory
+  - Size, Color, Material
+  - Price
+- Save draft functionality
+- Upload product
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Project Structure
+
+```
+app/
+├── page.tsx                 # Home page
+├── trending/page.tsx        # Trending items
+├── category/
+│   ├── page.tsx            # Category list
+│   └── [id]/page.tsx       # Subcategory page
+├── product/
+│   └── [id]/page.tsx       # Product detail
+├── checkout/page.tsx       # Checkout page
+├── payment/page.tsx        # Payment page
+├── sell/page.tsx           # Sell item form
+├── inbox/page.tsx          # Messages
+└── profile/page.tsx        # User profile
+
+components/
+└── BottomNav.tsx           # Bottom navigation
+
+public/
+└── products/               # Product images
+```
+
+## Color Scheme
+
+- Primary: #9B8B8B (mauve)
+- Secondary: #C4B5B5 (light taupe)
+- Accent: #8B7070 (dark mauve)
+
+## User Flow
+
+### Buying Flow:
+1. Browse products (Home/Trending/Category)
+2. View product detail
+3. Chat dengan seller (optional)
+4. Click "Buy Now"
+5. Review checkout details
+6. Select shipping & payment method
+7. Proceed to payment
+8. Upload payment proof
+9. Wait for verification
+
+### Selling Flow:
+1. Click "Sell" di bottom nav
+2. Upload product photos
+3. Fill product details
+4. Set price
+5. Upload product
+6. Product goes live
+
+## Notes
+
+- Design mobile-first responsive
+- Smooth animations dengan Framer Motion (optional)
+- Real-time updates untuk messages
+- Secure payment handling
+- Image optimization untuk performance
