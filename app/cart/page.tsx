@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Trash2, Plus, Minus } from "lucide-react";
 import BottomNav from "@/components/BottomNav";
+import MobileContainer from "@/components/MobileContainer";
 
 export default function CartPage() {
   const cartItems = [
@@ -29,9 +30,10 @@ export default function CartPage() {
   const total = subtotal + shipping;
 
   return (
-    <div className="min-h-screen pb-32 bg-gray-50">
-      {/* Header */}
-      <header className="bg-white px-4 py-4 border-b sticky top-0 z-10">
+    <MobileContainer>
+      <div className="pb-32">
+        {/* Header */}
+        <header className="bg-white px-4 py-4 border-b sticky top-0 z-10">
         <h1 className="text-lg font-semibold">Shopping Cart</h1>
       </header>
 
@@ -100,6 +102,7 @@ export default function CartPage() {
       </div>
 
       <BottomNav />
-    </div>
+      </div>
+    </MobileContainer>
   );
 }

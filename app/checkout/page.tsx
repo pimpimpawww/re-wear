@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronLeft, MapPin, Truck, CreditCard } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import MobileContainer from "@/components/MobileContainer";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -26,8 +27,9 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-32">
-      {/* Header */}
+    <MobileContainer>
+      <div className="pb-32">
+        {/* Header */}
       <header className="bg-white px-4 py-4 border-b sticky top-0 z-10">
         <div className="flex items-center gap-3">
           <Link href="/product/1">
@@ -219,6 +221,7 @@ export default function CheckoutPage() {
           Proceed to Payment
         </button>
       </div>
-    </div>
+      </div>
+    </MobileContainer>
   );
 }

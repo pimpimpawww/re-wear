@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronRight, Search } from "lucide-react";
 import BottomNav from "@/components/BottomNav";
+import MobileContainer from "@/components/MobileContainer";
 
 const subcategories: Record<string, string[]> = {
   woman: ["Footwear", "Dresses", "Tops", "Bottoms", "Outerwear", "Bags & Purses", "Accessories"],
@@ -13,9 +14,10 @@ export default function SubcategoryPage({ params }: { params: { id: string } }) 
   const items = subcategories[params.id] || [];
 
   return (
-    <div className="min-h-screen pb-20 bg-gray-50">
-      {/* Header */}
-      <header className="bg-white px-4 py-4 border-b">
+    <MobileContainer>
+      <div className="pb-20">
+        {/* Header */}
+        <header className="bg-white px-4 py-4 border-b">
         <div className="bg-secondary/30 rounded-full px-4 py-2 text-center mb-3">
           <span className="text-sm font-medium capitalize">{params.id}</span>
         </div>
@@ -44,6 +46,7 @@ export default function SubcategoryPage({ params }: { params: { id: string } }) 
       </div>
 
       <BottomNav />
-    </div>
+      </div>
+    </MobileContainer>
   );
 }

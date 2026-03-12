@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, Copy, Check } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import MobileContainer from "@/components/MobileContainer";
 
 export default function PaymentPage() {
   const router = useRouter();
@@ -44,8 +45,9 @@ export default function PaymentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
-      {/* Header */}
+    <MobileContainer>
+      <div className="pb-24">
+        {/* Header */}
       <header className="bg-white px-4 py-4 border-b sticky top-0 z-10">
         <div className="flex items-center gap-3">
           <Link href="/checkout">
@@ -175,6 +177,7 @@ export default function PaymentPage() {
           Confirm Payment
         </button>
       </div>
-    </div>
+      </div>
+    </MobileContainer>
   );
 }

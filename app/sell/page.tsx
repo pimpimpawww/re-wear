@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { X, Upload, Camera } from "lucide-react";
-import Link from "next/link";
+import { Upload, Camera, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Sidebar from "@/components/Sidebar";
 
 export default function SellPage() {
   const router = useRouter();
@@ -22,190 +22,217 @@ export default function SellPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate upload
-    alert("Product uploaded successfully!");
-    router.push("/");
+    // Handle form submission
+    console.log(formData);
   };
 
   return (
-    <div className="min-h-screen bg-white pb-24">
-      {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b sticky top-0 bg-white z-10">
-        <Link href="/">
-          <X className="w-6 h-6" />
-        </Link>
-        <h1 className="text-lg font-semibold">Sell Item</h1>
-        <div className="w-6" />
-      </header>
+    <div className="min-h-screen bg-gray-50">
+      {/* Sidebar Navigation */}
+      <Sidebar />
 
-      <form onSubmit={handleSubmit} className="px-4 py-4 space-y-4">
-        {/* Upload Photos */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Photos (Max 4)</label>
-          <div className="grid grid-cols-4 gap-2">
-            {[1, 2, 3, 4].map((i) => (
-              <button
-                key={i}
-                type="button"
-                className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 hover:border-primary transition"
-              >
-                {i === 1 ? <Camera className="w-6 h-6 text-gray-400" /> : <Upload className="w-5 h-5 text-gray-400" />}
-              </button>
-            ))}
-          </div>
-        </div>
+      {/* Main Content - Offset for sidebar */}
+      <div className="ml-64">
+        <div className="max-w-4xl mx-auto bg-white min-h-screen">
+          <div className="pb-6">
+            {/* Header */}
+            <header className="sticky top-0 bg-white border-b px-6 py-4 z-40">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">Sell Your Item</h1>
+                  <p className="text-sm text-gray-600 mt-1">List your pre-loved fashion items</p>
+                </div>
+                <button
+                  onClick={() => router.back()}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+            </header>
 
-        {/* Title */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Title</label>
-          <input
-            type="text"
-            value={formData.title}
-            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-            placeholder="e.g., Vintage Leather Bag"
-            required
-          />
-        </div>
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="p-6 space-y-6">
+              {/* Photos Upload */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Photos (up to 4)
+                </label>
+                <div className="grid grid-cols-4 gap-3">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div
+                      key={i}
+                      className="aspect-square border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:border-accent transition-colors cursor-pointer"
+                    >
+                      <Camera className="w-8 h-8 text-gray-400 mb-2" />
+                      <span className="text-xs text-gray-500">Add Photo</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-        {/* Brand & Condition */}
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <label className="block text-sm font-medium mb-2">Brand</label>
-            <input
-              type="text"
-              value={formData.brand}
-              onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder="Brand name"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-2">Condition</label>
-            <select
-              value={formData.condition}
-              onChange={(e) => setFormData({ ...formData, condition: e.target.value })}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-            >
-              <option value="new">New</option>
-              <option value="like-new">Like New</option>
-              <option value="good">Good</option>
-              <option value="fair">Fair</option>
-            </select>
-          </div>
-        </div>
+              {/* Title */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Title *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.title}
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                  placeholder="e.g. Vintage Leather Jacket"
+                />
+              </div>
 
-        {/* Description */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Description</label>
-          <textarea
-            value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            rows={4}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-            placeholder="Describe your item..."
-            required
-          />
-        </div>
+              {/* Category & Brand */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Category *
+                  </label>
+                  <select
+                    required
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                  >
+                    <option value="">Select category</option>
+                    <option value="woman">Woman</option>
+                    <option value="man">Man</option>
+                    <option value="child">Child</option>
+                    <option value="others">Others</option>
+                  </select>
+                </div>
 
-        {/* Category */}
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <label className="block text-sm font-medium mb-2">Category</label>
-            <select
-              value={formData.category}
-              onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              required
-            >
-              <option value="">Select</option>
-              <option value="woman">Woman</option>
-              <option value="man">Man</option>
-              <option value="child">Child</option>
-              <option value="others">Others</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-2">Subcategory</label>
-            <select
-              value={formData.subcategory}
-              onChange={(e) => setFormData({ ...formData, subcategory: e.target.value })}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              required
-            >
-              <option value="">Select</option>
-              <option value="bags">Bags & Purses</option>
-              <option value="footwear">Footwear</option>
-              <option value="dresses">Dresses</option>
-              <option value="tops">Tops</option>
-            </select>
-          </div>
-        </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Brand
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.brand}
+                    onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                    placeholder="e.g. Zara, H&M"
+                  />
+                </div>
+              </div>
 
-        {/* Details */}
-        <div className="grid grid-cols-3 gap-3">
-          <div>
-            <label className="block text-sm font-medium mb-2">Size</label>
-            <input
-              type="text"
-              value={formData.size}
-              onChange={(e) => setFormData({ ...formData, size: e.target.value })}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder="S, M, L"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-2">Color</label>
-            <input
-              type="text"
-              value={formData.color}
-              onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder="Brown"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-2">Material</label>
-            <input
-              type="text"
-              value={formData.material}
-              onChange={(e) => setFormData({ ...formData, material: e.target.value })}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder="Leather"
-            />
-          </div>
-        </div>
+              {/* Condition */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Condition *
+                </label>
+                <div className="grid grid-cols-3 gap-3">
+                  {['like-new', 'good', 'fair'].map((cond) => (
+                    <button
+                      key={cond}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, condition: cond })}
+                      className={`py-3 px-4 border-2 rounded-lg font-medium capitalize transition-all ${
+                        formData.condition === cond
+                          ? 'border-accent bg-accent text-white'
+                          : 'border-gray-300 hover:border-accent'
+                      }`}
+                    >
+                      {cond.replace('-', ' ')}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-        {/* Price */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Price (Rp)</label>
-          <input
-            type="number"
-            value={formData.price}
-            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-            placeholder="355000"
-            required
-          />
-        </div>
-      </form>
+              {/* Description */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Description *
+                </label>
+                <textarea
+                  required
+                  rows={4}
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent resize-none"
+                  placeholder="Describe your item..."
+                />
+              </div>
 
-      {/* Bottom Actions */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 max-w-md mx-auto">
-        <div className="flex gap-3">
-          <button
-            type="button"
-            className="px-6 py-3 border border-gray-300 rounded-full text-sm font-medium"
-          >
-            Save Draft
-          </button>
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            className="flex-1 bg-accent text-white py-3 rounded-full text-sm font-medium"
-          >
-            Upload
-          </button>
+              {/* Size, Color, Material */}
+              <div className="grid grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Size
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.size}
+                    onChange={(e) => setFormData({ ...formData, size: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                    placeholder="S, M, L"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Color
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.color}
+                    onChange={(e) => setFormData({ ...formData, color: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                    placeholder="Black, Blue"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Material
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.material}
+                    onChange={(e) => setFormData({ ...formData, material: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                    placeholder="Cotton, Leather"
+                  />
+                </div>
+              </div>
+
+              {/* Price */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Price (Rp) *
+                </label>
+                <input
+                  type="number"
+                  required
+                  value={formData.price}
+                  onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                  placeholder="100000"
+                />
+              </div>
+
+              {/* Submit Buttons */}
+              <div className="flex gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={() => router.back()}
+                  className="flex-1 py-3 border-2 border-gray-300 rounded-full font-medium hover:bg-gray-50 transition-colors"
+                >
+                  Save Draft
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 py-3 bg-accent text-white rounded-full font-medium hover:bg-accent/90 transition-colors shadow-lg"
+                >
+                  Upload
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
