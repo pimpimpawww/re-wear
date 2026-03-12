@@ -105,6 +105,7 @@ export default function Home() {
                     ))}
                   </div>
                 </section>
+                
 
                 {/* Hot items section - Responsive Grid */}
                 {products.length > 8 && (
